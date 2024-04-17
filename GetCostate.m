@@ -1,9 +1,8 @@
 %TODO finish
 function p_result = GetCostate(x_vec_over_time, time_vec, dt, N)
-       % x_vec_over_time is in (2*N) + 4 x number of time steps still since
-       % we do still need to take into account x_0 and x_7 for the running
-       % cost partial derivative (dL_dx).
-
+% x_vec_over_time is in (2*N) + 4 x number of time steps still since
+% we do still need to take into account x_0 and x_7 for the running
+% cost partial derivative (dL_dx).
     p_result = zeros((2*N), length(time_vec));
 
     dL_dx_over_time = zeros(2*N, length(time_vec));
