@@ -42,13 +42,16 @@ while(iteration_ind <= 1)
     
     J_beta = GetCost(state, beta_k_scaled_cost, time_vec, dt, N);
     J_u = GetCost(state, u, time_vec, dt, N);
-    while( (J_beta - J_u) <= (alpha * (beta^k_u) * theta_res))
+    gap_scaled = (alpha * (beta^k_u) * theta_res);
+    cost_diff = (J_beta - J_u);
+    while( cost_diff > gap_scaled)
         k_u = k_u +1;
-        
-        beta_k_scaled_cost = u + ((beta^k_u) * (v - u));
+        test = ((beta^k_u) * (v - u));
+        beta_k_scaled_cost = u + test;
         
         J_beta = GetCost(state, beta_k_scaled_cost, time_vec, dt, N);
         J_u = GetCost(state, u, time_vec, dt, N);
+        cost_diff = (J_beta - J_u);
     end
 
     u_next = u + ((beta^k_u) * (v - u));
