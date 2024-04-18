@@ -10,17 +10,17 @@ function v_over_time = GetHamiltonianMinimizer(costate_vec_over_time, N)
             % v_1 and v_2 are the control variables associated with each of
             % the entity costates
             if costate_vec_over_time(j, i) > 1
-                v_1 = 1;
-            elseif costate_vec_over_time(j, i) < -1
                 v_1 = -1;
+            elseif costate_vec_over_time(j, i) < -1
+                v_1 = 1;
             else 
                 v_1 = 0;
             end
 
             if costate_vec_over_time(j+1, i) > 1
-                v_2 = 1;
-            elseif costate_vec_over_time(j+1, i) < -1
                 v_2 = -1;
+            elseif costate_vec_over_time(j+1, i) < -1
+                v_2 = 1;
             else
                 v_2 = 0;
             end

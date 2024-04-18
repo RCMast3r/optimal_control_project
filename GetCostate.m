@@ -33,7 +33,7 @@ function p_result = GetCostate(x_vec_over_time, time_vec, dt, N)
     end
     
     for t = length(time_vec)-1:-1:1
-        p_result(:, t) = -1*dt*dL_dx_over_time(:, t) + p_result(:, t+1);
+        p_result(:, t) = -1 * dt*dL_dx_over_time(:, t) + p_result(:, t+1);
     end
 
     %TODO 

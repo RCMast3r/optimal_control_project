@@ -30,8 +30,8 @@ while(iteration_ind <= 1)
     costate = GetCostate(state, time_vec, dt, N);
     % step 2
     minimized_controls = GetHamiltonianMinimizer(costate, N);
-    theta_res = GetThetaGap(minimized_controls, u, costate, state, N);
-    if theta_res < 0.001
+    theta_res = GetThetaGap(minimized_controls, u, costate, state, dt, N);
+    if abs(theta_res) < .0001
         break
     end
 
@@ -61,11 +61,11 @@ while(iteration_ind <= 1)
     
 end
 
-plot(state(2, 1), state(3, 1), '.', 'MarkerSize', 30)
-plot(state(4, 1), state(5, 1), '.', 'MarkerSize', 30)
-plot(state(6, 1), state(7, 1), '.', 'MarkerSize', 30)
-plot(state(8, 1), state(9, 1), '.', 'MarkerSize', 30)
-plot(state(10, 1), state(11, 1), '.', 'MarkerSize', 30)
-plot(state(12, 1), state(13, 1), '.', 'MarkerSize', 30)
+plot(state(3, 1), state(4, 1), '.', 'MarkerSize', 30)
+plot(state(5, 1), state(6, 1), '.', 'MarkerSize', 30)
+plot(state(7, 1), state(8, 1), '.', 'MarkerSize', 30)
+plot(state(9, 1), state(10, 1), '.', 'MarkerSize', 30)
+plot(state(11, 1), state(12, 1), '.', 'MarkerSize', 30)
+plot(state(13, 1), state(14, 1), '.', 'MarkerSize', 30)
 
 plot_all(state, u)
