@@ -11,6 +11,7 @@ function p_result = GetCostate(x_vec_over_time, time_vec, dt, N)
     % this for loop calculates the partial derivative of L w.r.t. x at each
     % time t. dL_dx_j is a matrix in 2x(number of dts) 
     for j = 3:2:(2*N)
+        % TODO check the index math here
         x_j_prev = x_vec_over_time((j-2):(j-1), :);
         x_j_next = x_vec_over_time((j+2):(j+3), :);
         x_j = x_vec_over_time(j:(j+1), :);
