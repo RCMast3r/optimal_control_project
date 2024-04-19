@@ -24,11 +24,11 @@ function x_result = GetState(u, time_vec, dt, N)
     for t = 2:length(time_vec)
         % at each entity index j (starts at 3 since the first two rows 
         % are taken up by the x_0 entity state) 
-        for j = 3:2:(2*N)
+        for j = 1:2:(2*(N))
             % row, row + 1 = the 2 entity state indexes
             % col = time step
-            x_result(j, t) = (u(j, t) * dt) + x_result(j, t-1);
-            x_result(j+1, t) = (u(j+1, t) * dt) + x_result(j+1, t-1);
+            x_result(j+2, t) = (u(j, t) * dt) + x_result(j+2, t-1);
+            x_result(j+3, t) = (u(j+1, t) * dt) + x_result(j+3, t-1);
         end
         
     end

@@ -17,8 +17,8 @@ function L = GetRunningCost(x_vec, u, N)
     end
 
     % add the cost of the last (x_7 / N+1)
-    x_second_to_last = x_vec( 12 : 13 );
-    x_last = x_vec( 14 : 15 );
+    x_second_to_last = x_vec( 13 : 14 );
+    x_last = x_vec( 15 : 16 );
 
     L = L + (norm(x_last - x_second_to_last)^2);
 end
