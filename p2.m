@@ -4,7 +4,7 @@ clear;
 % actual:
 % dt = .001;
 % testing:
-dt = .1;
+dt = 1;
 N = 6;
 C = 1;
 K = 1;
@@ -13,7 +13,7 @@ beta = 0.25;
 
 final_time = 20;
 time_vec = [0:dt:final_time];
-initial_u = ones(2*N, length(time_vec));
+initial_u = zeros(2*N, length(time_vec));
 
 % TODO plot all u's over time as well
 % TODO plot resulting phase plot of all the states
@@ -23,13 +23,14 @@ u = initial_u;
 
 iteration_ind = 0;
 
-while(iteration_ind <= 1)
+while(iteration_ind <= 100)
     % step 1
     state = GetState(u, time_vec, dt, N);
 
     costate = GetCostate(state, time_vec, dt, N);
     % step 2
     minimized_controls = GetHamiltonianMinimizer(costate, N);
+
     theta_res = GetThetaGap(minimized_controls, u, costate, state, dt, N);
     if abs(theta_res) < .0001
         break
