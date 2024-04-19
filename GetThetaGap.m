@@ -2,7 +2,7 @@ function theta_res = GetThetaGap(v_over_time, u_over_time, p_over_time, x_over_t
 
     theta_res = 0;
     
-    for t = 1:length(u_over_time)
+    for t = 1:size(u_over_time, 2)
         p = p_over_time(:, t);
         u = u_over_time(:, t);
         v = v_over_time(:, t);
