@@ -29,11 +29,11 @@ while(iteration_ind <= 10)
     %plot(state(3, 1), state(4, 1), '.', 'MarkerSize', 30)
     %plot(state(5, 1), state(6, 1), '.', 'MarkerSize', 30)
     %plot(state(7, 1), state(8, 1), '.', 'MarkerSize', 30)
-    plot(state(9, 1), state(10, 1), '.', 'MarkerSize', 30)
-    plot(state(11, 1), state(12, 1), '.', 'MarkerSize', 30)
-    plot(state(13, 1), state(14, 1), '.', 'MarkerSize', 30)
+    %plot(state(9, 1), state(10, 1), '.', 'MarkerSize', 30)
+    %plot(state(11, 1), state(12, 1), '.', 'MarkerSize', 30)
+    %plot(state(13, 1), state(14, 1), '.', 'MarkerSize', 30)
 
-    plot_all(state, u)
+    %plot_all(state, u)
     costate = GetCostate(state, time_vec, dt, N);
     % step 2
     minimized_controls = GetHamiltonianMinimizer(costate, N);
