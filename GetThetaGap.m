@@ -11,4 +11,6 @@ function theta_res = GetThetaGap(v_over_time, u_over_time, p_over_time, x_over_t
         H_v_t = (p.' * v) + GetRunningCost(x, v, N);
         theta_res = theta_res + ((H_v_t - H_u_t) * dt);
     end
+
+    %theta_res = abs(theta_res);
 end

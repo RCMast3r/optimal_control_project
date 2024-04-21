@@ -5,7 +5,7 @@ function p_result = GetCostate(x_vec_over_time, time_vec, dt, N)
 % cost partial derivative (dL_dx).
     p_result = zeros((2*N), length(time_vec));
 
-    dL_dx_over_time = zeros(2*N, length(time_vec));
+    p_dot_over_time = zeros(2*N, length(time_vec));
     
     % x_vec_over_time has x0 through x7
     % this for loop calculates the partial derivative of L w.r.t. x at each
@@ -17,16 +17,16 @@ function p_result = GetCostate(x_vec_over_time, time_vec, dt, N)
         x_j_next = x_vec_over_time((j+2):(j+3), :);
         x_j = x_vec_over_time(j:(j+1), :);
         
-        dL_dx_j = -2*((2*x_j) -x_j_prev - x_j_next);
+        p_dot = -2*((2*x_j) -x_j_prev - x_j_next);
         
 
 
         % Perform the replacement
-        dL_dx_over_time((j-2):(j-1), :) = dL_dx_j;
+        p_dot_over_time((j-2):(j-1), :) = p_dot;
     end
     
     for t = length(time_vec)-1:-1:1
-        p_result(:, t) = -1 * dt*dL_dx_over_time(:, t) + p_result(:, t+1);
+        p_result(:, t) = -1 * dt*p_dot_over_time(:, t) + p_result(:, t+1);
     end
 
     %TODO 

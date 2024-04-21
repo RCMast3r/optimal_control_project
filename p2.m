@@ -4,7 +4,7 @@ clear;
 % actual:
 % dt = .001;
 % testing:
-dt = 0.1;
+dt = 0.5;
 N = 6;
 C = 1;
 K = 1;
@@ -12,8 +12,9 @@ alpha = 0.25;
 beta = 0.25;
 
 final_time = 20;
-time_vec = [0:dt:final_time];
+time_vec = 0:dt:final_time;
 initial_u = zeros(2*N, length(time_vec));
+
 
 % TODO plot all u's over time as well
 % TODO plot resulting phase plot of all the states
@@ -44,8 +45,10 @@ while(iteration_ind <= 10)
     % step 3
     k_u = 0;
     beta_k_scaled_cost = u + ((beta^k_u) * (v - u));
+
+    test_state = GetState(beta_k_scaled_cost, time_vec, dt, N);
     
-    J_beta = GetCost(state, beta_k_scaled_cost, time_vec, dt, N);
+    J_beta = GetCost(test_state, beta_k_scaled_cost, time_vec, dt, N);
     J_u = GetCost(state, u, time_vec, dt, N);
     gap_scaled = (alpha * (beta^k_u) * theta_res);
     cost_diff = (J_beta - J_u);
@@ -54,8 +57,10 @@ while(iteration_ind <= 10)
         gap_scaled = (alpha * (beta^k_u) * theta_res);
         test = ((beta^k_u) * (v - u));
         beta_k_scaled_cost = u + test;
+
+        test_state = GetState(beta_k_scaled_cost, time_vec, dt, N);
         
-        J_beta = GetCost(state, beta_k_scaled_cost, time_vec, dt, N);
+        J_beta = GetCost(test_state, beta_k_scaled_cost, time_vec, dt, N);
         J_u = GetCost(state, u, time_vec, dt, N);
         cost_diff = (J_beta - J_u);
     end
@@ -64,7 +69,7 @@ while(iteration_ind <= 10)
 
     u = u_next;
     iteration_ind = iteration_ind + 1;
-    
+
 end
 
 plot(state(3, 1), state(4, 1), '.', 'MarkerSize', 30)
